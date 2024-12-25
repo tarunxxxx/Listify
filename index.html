@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directory Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .directory-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+        .directory-item:last-child {
+            border-bottom: none;
+        }
+        .directory-item h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #333;
+        }
+        .directory-item p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Directory</h1>
+    </header>
+    <div class="container">
+        <div id="directory-list">
+            <!-- Directory items will be loaded here dynamically -->
+        </div>
+    </div>
+
+    <script>
+        // Example JSON file structure
+        const jsonData = [
+            {
+                "name": "John Doe",
+                "occupation": "Software Engineer",
+                "email": "john@example.com"
+            },
+            {
+                "name": "Jane Smith",
+                "occupation": "Graphic Designer",
+                "email": "jane@example.com"
+            },
+            {
+                "name": "Sam Wilson",
+                "occupation": "Content Writer",
+                "email": "sam@example.com"
+            }
+        ];
+
+        // Function to load directory data into the page
+        function loadDirectoryData(data) {
+            const directoryList = document.getElementById('directory-list');
+            data.forEach(item => {
+                const directoryItem = document.createElement('div');
+                directoryItem.classList.add('directory-item');
+                directoryItem.innerHTML = `
+                    <div>
+                        <h3>${item.name}</h3>
+                        <p>${item.occupation}</p>
+                    </div>
+                    <p><a href="mailto:${item.email}">${item.email}</a></p>
+                `;
+                directoryList.appendChild(directoryItem);
+            });
+        }
+
+        // Load data on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadDirectoryData(jsonData);
+        });
+    </script>
+</body>
+</html>
